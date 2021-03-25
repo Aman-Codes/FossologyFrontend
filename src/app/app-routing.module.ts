@@ -12,9 +12,9 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'dashboard',
+        path: 'browse',
         loadChildren: () =>
-          import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+          import('./modules/browse/browse.module').then(m => m.BrowseModule)
       },
       {
         path: 'about',

@@ -1,0 +1,42 @@
+<div class="row my-3 mx-0">
+  <div class="col">
+    <div class="mt-3 mx-3 p-2" style="border: 2px solid #333;">
+      <h4 class="m-1 text-center">Uploads in Software Repository</h4>
+      <ng-container *ngIf="loading">
+        <div class="row text-center pt-5">
+            <div class="col">
+              <app-spinner></app-spinner>
+            </div>
+        </div>
+      </ng-container>
+      <table *ngIf="uploads" datatable="ng" [dtOptions]="dtOptions" class="row-border hover">
+        <thead>
+          <tr>
+            <th>Upload Name</th>
+            <th>Status</th>
+            <th>Comment</th>
+            <th>Main Licenses</th>
+            <th>Assigned To</th>
+            <th>Upload Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let upload of uploads">
+            <td>
+              <span style="color: blue;"><b>{{ upload.uploadname }}</b></span><br/>
+              {{ upload.description }}
+            </td>
+            <td>{{ upload.status || 'open'}}</td>
+            <td>{{ upload.comment }}</td>
+            <td>{{ upload.mainLicenses }}</td>
+            <td>{{ upload.assignedTo }}</td>
+            <td>{{ upload.uploaddate }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+</div>
+

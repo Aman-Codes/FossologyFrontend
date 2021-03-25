@@ -1,6 +1,55 @@
 # FossologyFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
+The new FOSSology frontend created with Angular
+
+## Requirements
+
+Your machine should have [Node.js](https://nodejs.org/en/download/), [Npm](https://www.npmjs.com/get-npm)(or [Yarn](https://classic.yarnpkg.com/en/docs/install)), and [Angular CLI](https://www.npmjs.com/package/@angular/cli) installed to use it locally.
+
+## Pre Installation Steps
+
+The frontend code will run on `http://localhost:4200` and backend code will be running on `http://localhost/repo/` if installed from source. So, it may lead to CORS Error.
+
+```php
+function cors() {
+    
+  // Allow from any origin
+  if (isset($_SERVER['HTTP_ORIGIN'])) {
+      // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
+      // you want to allow, and if so:
+      header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+      header('Access-Control-Allow-Credentials: true');
+      header('Access-Control-Max-Age: 86400');    // cache for 1 day
+  }
+  
+  // Access-Control headers are received during OPTIONS requests
+  if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+      
+      if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+          // may also be using PUT, PATCH, HEAD etc
+          header("Access-Control-Allow-Methods: GET, POST, OPTIONS");         
+      
+      if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+          header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+  
+      exit(0);
+  }
+}
+
+cors();
+```
+
+1. Add the above function in FOSSology backend and then rebuild it.
+
+**Note:** The above function will allow access from all origin and should not be used in production
+
+2. Run the FOSSology backend server
+
+3. Generate a [JWT token](https://github.com/fossology/fossology/wiki/FOSSology-REST-API#json-web-token-jwt) and add it in `src\environments\environment.ts` file
+
+## Installation 
+
+Run `npm install` to install all the depenedncies.
 
 ## Development server
 
